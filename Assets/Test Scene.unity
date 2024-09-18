@@ -343,6 +343,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829c32429d96a0e469023a186dc95011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 4
+  rateOfFire: 2
+  input: {fileID: 11400000, guid: f3fdc93830563b24e9a2f76a8c20a5fa, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
