@@ -28,6 +28,7 @@ namespace Shmup
         private void firePlayerWeapon()
         {
             isShooting = true;
+            Debug.Log("pew pew");
         }
 
         private void MovePlayer(Vector2 newDirection)
