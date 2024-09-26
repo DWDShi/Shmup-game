@@ -22,13 +22,21 @@ namespace Shmup
         void Start()
         {
             input.MoveEvent += MovePlayer;
-            input.ShootEvent += firePlayerWeapon;
+            input.ShootEvent += FirePlayerWeapon;
+            input.ShootCancelledEvent += StopPlayerWeapon;
         }
 
-        private void firePlayerWeapon()
+        private void FirePlayerWeapon()
         {
             isShooting = true;
             Debug.Log("pew pew");
+        }
+
+        private void StopPlayerWeapon()
+        {
+            isShooting = false;
+
+            Debug.Log("no shooting");
         }
 
         private void MovePlayer(Vector2 newDirection)
@@ -40,7 +48,7 @@ namespace Shmup
         {
             if (moveDirection != Vector2.zero) 
             {
-                transform.position += (new Vector3(moveDirection.x, moveDirection.y, 0) * (moveSpeed * Time.deltaTime)) ; 
+                transform.position += ((Vector3)moveDirection * (moveSpeed * Time.deltaTime)) ; 
             }
         }
 

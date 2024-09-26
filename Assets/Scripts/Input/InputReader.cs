@@ -43,6 +43,7 @@ namespace Shmup
         public event Action<Vector2> MoveEvent;
 
         public event Action ShootEvent;
+        public event Action ShootCancelledEvent;
        
         public event Action PauseEvent;
 
@@ -79,6 +80,10 @@ namespace Shmup
             if (context.phase == InputActionPhase.Performed)
             {
                 ShootEvent?.Invoke();
+            }
+            if (context.phase == InputActionPhase.Canceled)
+            {
+                ShootCancelledEvent?.Invoke();
             }
 
         }

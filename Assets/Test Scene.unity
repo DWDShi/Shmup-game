@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 153856604}
   - component: {fileID: 153856605}
   m_Layer: 0
-  m_Name: Player Ship Seeker
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
