@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace Shmup
 {
-    //allows us to creats an instajnnce of this in the editor
+    //Allows us to creats an instance of this in the editor
     [CreateAssetMenu(menuName = "InputReader")]
 
     public class InputReader : ScriptableObject, InputMap.IGameplayActions, InputMap.IPauseMenuActions
