@@ -14,6 +14,11 @@ namespace Shmup
         public Animator Anim { get; private set; }
 
         [SerializeField] private PlayerData playerData;
+        
+        [field: SerializeField] public InputReader PlayerInput { get; private set; }
+
+        public Rigidbody2D RB {  get; private set; }
+        
 
         private void Awake()
         {
@@ -28,7 +33,11 @@ namespace Shmup
         {
             Anim = GetComponent<Animator>();
             //Give the state machine an initial state
+            RB = GetComponent<Rigidbody2D>();
+
+            //initialise any components before this, or else IT ALL BREAKS!!!
             StateMachine.Initialise(IdleState);
+            
         }
 
         private void Update()
@@ -40,6 +49,11 @@ namespace Shmup
         private void FixedUpdate()
         {
             StateMachine.CurrentState.PhysicsUpdate();
+        }
+
+        public void SetVelocity(Vector2 newVelocity) 
+        { 
+            RB.velocity = newVelocity;
         }
     }
 }
