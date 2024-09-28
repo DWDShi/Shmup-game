@@ -8,14 +8,27 @@ namespace Shmup
     {
         public PlayerStateMachine StateMachine { get; private set; }
 
+        public PlayerIdleState IdleState { get; private set; }
+        public PlayerMoveState MoveState { get; private set; }
+
+        public Animator Anim { get; private set; }
+
+        [SerializeField] private PlayerData playerData;
+
         private void Awake()
         {
+            //create state machine and states
             StateMachine = new PlayerStateMachine();
+
+            IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
+            MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
         }
 
         private void Start()
         {
-            //INIT STATE MACHINE
+            Anim = GetComponent<Animator>();
+            //Give the state machine an initial state
+            StateMachine.Initialise(IdleState);
         }
 
         private void Update()

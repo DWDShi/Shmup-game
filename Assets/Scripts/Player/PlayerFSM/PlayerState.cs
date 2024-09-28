@@ -32,13 +32,15 @@ namespace Shmup
         public virtual void Enter() 
         {
             DoChecks();
+            player.Anim.SetBool(animBoolName, true);
             startTime = Time.time;
+            Debug.Log(animBoolName);
         }
 
         //Called when exiting state
         public virtual void Exit() 
-        { 
-
+        {
+            player.Anim.SetBool(animBoolName, false);
         }
 
         //same as Update(), runs every frame
