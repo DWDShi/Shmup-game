@@ -6,7 +6,7 @@ namespace Shmup
 {
     public class PlayerShootState : PlayerNeutralState
     {
-        public PlayerShootState(Player conPlayer, PlayerStateMachine conStateMachine, PlayerData conPlayerData, string conAnimBoolName) : base(conPlayer, conStateMachine, conPlayerData, conAnimBoolName)
+        public PlayerShootState(Player conPlayer,  string conAnimBoolName) : base(conPlayer, conAnimBoolName)
         {
         }
 

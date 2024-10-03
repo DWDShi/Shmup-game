@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Shmup
 {
     //MonoBehaviour unneeded, this wont be directly attached to anything
-    public class PlayerStateMachine 
+    public class StateMachine 
     {
         public PlayerState CurrentState { get; private set; }   //easy getters and setters
 

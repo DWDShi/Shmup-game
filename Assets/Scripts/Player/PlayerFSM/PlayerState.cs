@@ -9,7 +9,7 @@ namespace Shmup
     {
         //Allows object which inherit from this to access these variables
         protected Player player;
-        protected PlayerStateMachine stateMachine;
+        protected StateMachine stateMachine;
         protected PlayerData playerData;
 
         //set when state entered, helps track how long we have been in the state for
@@ -19,12 +19,12 @@ namespace Shmup
         private string animBoolName;
 
         //simple constructor, things needed for the creation of each state
-        public PlayerState(Player conPlayer, PlayerStateMachine conStateMachine, PlayerData conPlayerData, string conAnimBoolName) 
+        public PlayerState(Player conPlayer , string conAnimBoolName) 
         {
             player = conPlayer;
-            stateMachine = conStateMachine;
-            playerData = conPlayerData;
             animBoolName = conAnimBoolName;
+            stateMachine = player.StateMachine;
+            playerData = player.playerData;
         }
         //Virtual functions so that subsequent states can overwrite the basic code
 

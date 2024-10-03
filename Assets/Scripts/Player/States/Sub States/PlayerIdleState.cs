@@ -7,7 +7,7 @@ namespace Shmup
 {
     public class PlayerIdleState : PlayerNeutralState
     {
-        public PlayerIdleState(Player conPlayer, PlayerStateMachine conStateMachine, PlayerData conPlayerData, string conAnimBoolName) : base(conPlayer, conStateMachine, conPlayerData, conAnimBoolName)
+        public PlayerIdleState(Player conPlayer,  string conAnimBoolName) : base(conPlayer, conAnimBoolName)
         {
         }
 
@@ -20,7 +20,7 @@ namespace Shmup
         {
             base.Enter();
             //Stop movement once idle
-            player.SetVelocity(Vector2.zero);
+            player.Movement.SetVelocity(Vector2.zero);
         }
 
         public override void Exit()
@@ -47,7 +47,7 @@ namespace Shmup
             //if moving, change to move state
             if (newInput != Vector2.zero)
             {
-                player.SetVelocity(newInput * playerData.moveSpeed);
+                player.Movement.SetVelocity(newInput * playerData.moveSpeed);
                 stateMachine.ChangeState(player.MoveState);
             }
         }

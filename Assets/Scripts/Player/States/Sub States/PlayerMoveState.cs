@@ -7,7 +7,7 @@ namespace Shmup
 {
     public class PlayerMoveState : PlayerNeutralState
     {
-        public PlayerMoveState(Player conPlayer, PlayerStateMachine conStateMachine, PlayerData conPlayerData, string conAnimBoolName) : base(conPlayer, conStateMachine, conPlayerData, conAnimBoolName)
+        public PlayerMoveState(Player conPlayer,  string conAnimBoolName) : base(conPlayer, conAnimBoolName)
         {
         }
 
@@ -43,7 +43,7 @@ namespace Shmup
         {
             base.MoveEventChange(newInput);
 
-            player.SetVelocity(newInput * playerData.moveSpeed);
+            player.Movement.SetVelocity(newInput * playerData.moveSpeed);
 
             if (newInput == Vector2.zero)
             {

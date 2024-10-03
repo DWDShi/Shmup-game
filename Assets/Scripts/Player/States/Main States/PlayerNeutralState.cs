@@ -8,7 +8,7 @@ namespace Shmup
 {
     public class PlayerNeutralState : PlayerState
     {
-        public PlayerNeutralState(Player conPlayer, PlayerStateMachine conStateMachine, PlayerData conPlayerData, string conAnimBoolName) : base(conPlayer, conStateMachine, conPlayerData, conAnimBoolName)
+        public PlayerNeutralState(Player conPlayer, string conAnimBoolName) : base(conPlayer, conAnimBoolName)
         {
             /* Needed here rather than on enter so that all states in the neutral situation can read inputs always, fixes issue in transitions as sometime it can get looped as the variable
             doesnt update since it has never been entered before and therefore hasnt sunscribed to the events :( */

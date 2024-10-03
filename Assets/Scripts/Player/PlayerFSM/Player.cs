@@ -4,12 +4,11 @@ using UnityEngine;
 
 namespace Shmup
 {
-    public class Player : MonoBehaviour
+    public class Player : FSMCore
     {
         //chunks of code such as variables are put into regions for organisation, expand them if needed
         #region State Variables
 
-        public PlayerStateMachine StateMachine { get; private set; }
 
         public PlayerIdleState IdleState { get; private set; }
         public PlayerMoveState MoveState { get; private set; }
@@ -18,25 +17,25 @@ namespace Shmup
 
         #region Components
 
-        public Animator Anim { get; private set; }
-
-        [SerializeField] private PlayerData playerData;
-        
+        [field: Space(10)]
+        [field: Header("Other")]
+        [field: SerializeField] public PlayerData playerData { get; private set; }
         [field: SerializeField] public InputReader PlayerInput { get; private set; }
+        
+        
 
-        public Rigidbody2D RB {  get; private set; }
 
         #endregion
 
         #region Unity Callback Functions
 
-        private void Awake()
+        protected override void Awake()
         {
             //create state machine and states
-            StateMachine = new PlayerStateMachine();
+            base.Awake();
 
-            IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
-            MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
+            IdleState = new PlayerIdleState(this, "idle");
+            MoveState = new PlayerMoveState(this, "move");
         }
 
         private void Start()
@@ -61,15 +60,10 @@ namespace Shmup
             StateMachine.CurrentState.PhysicsUpdate();
         }
 
-        #endregion 
-
-        #region Setters
-
-        public void SetVelocity(Vector2 newVelocity) 
-        { 
-            RB.velocity = newVelocity;
-        }
+       
 
         #endregion
+
+
     }
 }
