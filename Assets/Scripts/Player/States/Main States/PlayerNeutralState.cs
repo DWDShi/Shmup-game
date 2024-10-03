@@ -8,12 +8,12 @@ namespace Shmup
 {
     public class PlayerNeutralState : PlayerState
     {
-        protected Vector2 playerMoveInput;
         public PlayerNeutralState(Player conPlayer, PlayerStateMachine conStateMachine, PlayerData conPlayerData, string conAnimBoolName) : base(conPlayer, conStateMachine, conPlayerData, conAnimBoolName)
         {
             /* Needed here rather than on enter so that all states in the neutral situation can read inputs always, fixes issue in transitions as sometime it can get looped as the variable
             doesnt update since it has never been entered before and therefore hasnt sunscribed to the events :( */
-            player.PlayerInput.MoveEvent += ChangeMoveVector;
+            player.PlayerInput.MoveEvent += MoveEventChange;
+            player.PlayerInput.ShootEvent += ShootEventTrigger;
         }
 
         public override void DoChecks()
@@ -43,10 +43,19 @@ namespace Shmup
             base.PhysicsUpdate();
         }
 
-        //Change the movement vector to the new one received from event
-        private void ChangeMoveVector(Vector2 newInput)
+        protected virtual void ShootEventTrigger() 
         {
-            playerMoveInput = newInput;
+        
+        }
+        protected virtual void ShootEventCancel() 
+        {
+        
+        }
+
+        //Change the movement vector to the new one received from event
+        protected virtual void MoveEventChange(Vector2 newInput)
+        {
+
         }
     }
 }

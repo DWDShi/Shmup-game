@@ -31,17 +31,30 @@ namespace Shmup
         {
             base.LogicUpdate();
             //Move player
-            player.SetVelocity(playerMoveInput * playerData.moveSpeed);
-           
-            if (playerMoveInput == Vector2.zero) 
-            {
-                stateMachine.ChangeState(player.IdleState);
-            }
+            
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
+        }
+
+        protected override void MoveEventChange(Vector2 newInput)
+        {
+            base.MoveEventChange(newInput);
+
+            player.SetVelocity(newInput * playerData.moveSpeed);
+
+            if (newInput == Vector2.zero)
+            {
+                stateMachine.ChangeState(player.IdleState);
+            }
+            
+        }
+
+        protected override void ShootEventTrigger()
+        {
+            base.ShootEventTrigger();
         }
     }
 }

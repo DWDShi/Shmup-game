@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Shmup
 {
-    public class PlayerIdleState : PlayerNeutralState
+    public class PlayerShootState : PlayerNeutralState
     {
-        public PlayerIdleState(Player conPlayer, PlayerStateMachine conStateMachine, PlayerData conPlayerData, string conAnimBoolName) : base(conPlayer, conStateMachine, conPlayerData, conAnimBoolName)
+        public PlayerShootState(Player conPlayer, PlayerStateMachine conStateMachine, PlayerData conPlayerData, string conAnimBoolName) : base(conPlayer, conStateMachine, conPlayerData, conAnimBoolName)
         {
         }
 
@@ -19,8 +18,6 @@ namespace Shmup
         public override void Enter()
         {
             base.Enter();
-            //Stop movement once idle
-            player.SetVelocity(Vector2.zero);
         }
 
         public override void Exit()
@@ -31,8 +28,6 @@ namespace Shmup
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-
-            
         }
 
         public override void PhysicsUpdate()
@@ -43,18 +38,11 @@ namespace Shmup
         protected override void MoveEventChange(Vector2 newInput)
         {
             base.MoveEventChange(newInput);
-
-            //if moving, change to move state
-            if (newInput != Vector2.zero)
-            {
-                player.SetVelocity(newInput * playerData.moveSpeed);
-                stateMachine.ChangeState(player.MoveState);
-            }
         }
 
-        protected override void ShootEventTrigger()
+        protected override void ShootEventCancel()
         {
-            base.ShootEventTrigger();
+            base.ShootEventCancel();
         }
     }
 }
