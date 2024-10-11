@@ -9,9 +9,10 @@ namespace Shmup
         //chunks of code such as variables are put into regions for organisation, expand them if needed
         #region State Variables
 
-
         public PlayerIdleState IdleState { get; private set; }
         public PlayerMoveState MoveState { get; private set; }
+        public PlayerShootState ShootState { get; private set; }
+        public PlayerMoveShootState MoveShootState { get; private set; }
 
         #endregion
 
@@ -36,6 +37,8 @@ namespace Shmup
 
             IdleState = new PlayerIdleState(this, "idle");
             MoveState = new PlayerMoveState(this, "move");
+            ShootState = new PlayerShootState(this, "shoot");
+            MoveShootState = new PlayerMoveShootState(this, "moveshoot");
         }
 
         private void Start()
@@ -58,6 +61,7 @@ namespace Shmup
         private void FixedUpdate()
         {
             StateMachine.CurrentState.PhysicsUpdate();
+            
         }
 
        

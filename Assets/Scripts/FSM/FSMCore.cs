@@ -10,14 +10,18 @@ namespace Shmup
         public Rigidbody2D RB { get; protected set; }
 
         public StateMachine StateMachine { get; protected set; }
-        [Header("Core Components", order =0)]
-        public Movement Movement;
         
+        public Movement Movement {  get; private set; }  
+        public Shooting Shooting {  get; private set; }        
         
 
 
         protected virtual void Awake()
         {
+            Movement = GetComponentInChildren<Movement>();
+            Shooting = GetComponentInChildren<Shooting>();
+
+
             StateMachine = new StateMachine();
         }
     }

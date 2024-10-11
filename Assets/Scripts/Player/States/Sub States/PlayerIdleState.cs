@@ -55,6 +55,8 @@ namespace Shmup
         protected override void ShootEventTrigger()
         {
             base.ShootEventTrigger();
+
+            stateMachine.ChangeState(player.ShootState);
         }
     }
 }
